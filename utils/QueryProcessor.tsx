@@ -25,7 +25,11 @@ export default function QueryProcessor(query: string): string {
     if (matches == null || matches.length < 2){
       return "";
     }
-    return String(Number(matches[0]) + Number(matches[1]));
+    let sum = 0;
+    for (let i of matches){
+      sum += Number(matches[i]);
+    }
+    return String(sum);
   }
 
   if (query.toLowerCase().includes("multiplied")) {

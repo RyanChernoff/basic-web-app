@@ -11,6 +11,15 @@ export default function QueryProcessor(query: string): string {
     return "Ryan";
   }
 
+  if (query.toLowerCase().includes("largest")) {
+    const matches = query.match(/\d+/g);
+    if (matches == null || matches.length < 3){
+      return "";
+    }
+    const max : number[] = [Number(matches[0]), Number(matches[1]), Number(matches[2])];
+    return String(Math.max(...max));
+  }
+
   if (query.toLowerCase().includes("andrew id")){
     return "rchernof";
   }

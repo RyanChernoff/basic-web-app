@@ -28,6 +28,15 @@ export default function QueryProcessor(query: string): string {
     return String(Number(matches[0]) + Number(matches[1]));
   }
 
+  if (query.toLowerCase().includes("multiplied")) {
+    const matches = query.match(/\d+/g);
+    if (matches == null || matches.length < 2){
+      return "";
+    }
+    return String(Number(matches[0]) * Number(matches[1]));
+  }
+
+
   if (query.toLowerCase().includes("square and cube")) {
     const matches = query.match(/\d+/g);
     if (matches == null){

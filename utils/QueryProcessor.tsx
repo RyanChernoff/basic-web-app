@@ -20,6 +20,14 @@ export default function QueryProcessor(query: string): string {
     return String(Math.max(...max));
   }
 
+  if (query.toLowerCase().includes("plus")) {
+    const matches = query.match(/\d+/g);
+    if (matches == null || matches.length < 2){
+      return "";
+    }
+    return String(Number(matches[0]) + Number(matches[1]));
+  }
+
   if (query.toLowerCase().includes("andrew id")){
     return "rchernof";
   }

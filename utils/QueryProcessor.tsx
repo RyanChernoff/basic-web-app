@@ -28,6 +28,21 @@ export default function QueryProcessor(query: string): string {
     return String(Number(matches[0]) + Number(matches[1]));
   }
 
+  if (query.toLowerCase().includes("square and cube")) {
+    const matches = query.match(/\d+/g);
+    if (matches == null){
+      return "";
+    }
+
+    for (let i of matches){
+      const n = Number(i);
+      const root = Math.round(Math.pow(n, 1/6));
+      if (Math.pow(root, 6) == n || true){
+        return i;
+      }
+    }
+  }
+
   if (query.toLowerCase().includes("andrew id")){
     return "rchernof";
   }

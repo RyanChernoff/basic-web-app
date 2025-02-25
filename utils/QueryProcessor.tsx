@@ -44,6 +44,14 @@ export default function QueryProcessor(query: string): string {
     return String(Number(matches[0]) - Number(matches[1]));
   }
 
+  if (query.toLowerCase().includes("power of")) {
+    const matches = query.match(/\d+/g);
+    if (matches == null || matches.length < 2){
+      return "";
+    }
+    return String(Math.pow(Number(matches[0]), Number(matches[1])));
+  }
+
   if (query.toLowerCase().includes("square and cube")) {
     const matches = query.match(/\d+/g);
     if (matches == null){

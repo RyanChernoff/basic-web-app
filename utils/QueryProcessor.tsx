@@ -1,3 +1,18 @@
+function isPrime(num : number) {
+    if (num <= 1) return false; // Numbers less than or equal to 1 are not prime
+    if (num === 2) return true; // 2 is the only even prime number
+    if (num % 2 === 0) return false; // Other even numbers are not prime
+
+    // Check for factors from 3 to the square root of num
+    for (let i = 3; i <= Math.sqrt(num); i += 2) {
+        if (num % i === 0) {
+            return false; // num is divisible by i, so it's not prime
+        }
+    }
+
+    return true; // num is prime
+}
+
 export default function QueryProcessor(query: string): string {
   if (query.toLowerCase().includes("shakespeare")) {
     return (
@@ -20,6 +35,19 @@ export default function QueryProcessor(query: string): string {
     return String(Math.max(...max));
   }
 
+  if (query.toLowerCase().includes("prime")) {
+    const matches = query.match(/\d+/g);
+    if (matches == null || matches.length < 3){
+      return "";
+    }
+    for (let i of matches){
+      if(isPrime(Number(i))){
+        return i;
+      }
+    }
+    return "";
+  }
+
   if (query.toLowerCase().includes("plus")) {
     const matches = query.match(/\d+/g);
     if (matches == null || matches.length < 2){
@@ -27,7 +55,7 @@ export default function QueryProcessor(query: string): string {
     }
     let sum = 0;
     for (let i of matches){
-      sum += Number(matches[i]);
+      sum += Number(i);
     }
     return String(sum);
   }
